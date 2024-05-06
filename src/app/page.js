@@ -13,6 +13,7 @@ import LogInPage from "./home/page";
 export default function Home() {
   const { authUser, signInWithGoogle, signOut } = useContext(AuthContext);
   const {
+    userThemePreference,
     setUserThemeModeDark,
     setUserThemeModeLight,
     setUserThemeModeSystem,
@@ -21,15 +22,13 @@ export default function Home() {
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   return (
-    <html>
-      <body>
-        {/* <SideBarComponent /> */}
-        <LogInPage
-          authUser={authUser}
-          signInWithGoogle={signInWithGoogle}
-          signOut={signOut}
-        />
-      </body>
-    </html>
+    <body>
+      {/* <SideBarComponent /> */}
+      <LogInPage
+        authUser={authUser}
+        signInWithGoogle={signInWithGoogle}
+        signOut={signOut}
+      />
+    </body>
   );
 }

@@ -4,6 +4,12 @@
   gap: 10px;
   width: calc(100vw - 150px);
   height: 100%;
+
+  background-color: var(--primary-bg-color-light);
+}
+
+.Calendar-container-component.Dark {
+  background-color: var(--primary-bg-color-dark);
 }
 
 .Calendar-container-component .Calendar-body-container-weekview {
@@ -11,7 +17,6 @@
   grid-template-columns: 250px auto;
   border-radius: solid 1px;
   height: 100%;
-  /* height: calc(100vh - 50px); */
   transition: ease-in 0.3s;
 }
 

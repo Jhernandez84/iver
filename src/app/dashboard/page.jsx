@@ -9,9 +9,33 @@ import CalendarAndSummary from "@/Components/CdrAndSummary/CalendarAndSummary";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 
 import "./styles.css";
+import { AuthContext } from "@/Context/UserContext/UserContext";
 
 const Dashboard = () => {
   const { userThemePreference } = useContext(ThemeContext);
+  const { authUser } = useContext(AuthContext);
+
+  console.log(authUser);
+  // const timestamp = (authUser.lastLoginAt)
+
+  // console.log(timestamp)
+
+  const convertTimestampToDate = (timestamp) => {
+    const date = new Date(timestamp);
+
+    const options = {
+      weekday: "long", // 'short', 'long'
+      year: "numeric", // '2-digit', 'numeric'
+      month: "long", // 'short', 'long'
+      day: "numeric", // '2-digit', 'numeric'
+      hour: "numeric", // '2-digit', 'numeric'
+      minute: "numeric", // '2-digit', 'numeric'
+      second: "numeric", // '2-digit', 'numeric'
+      timeZoneName: "short",
+    }; // 'short', 'long'}
+
+    return date.toLocaleString(undefined, options);
+  };
 
   const AppointedDates = [
     { date: "2023-12-01", qty: "1" },
@@ -33,82 +57,91 @@ const Dashboard = () => {
   ];
 
   return (
-    // <div className="dashboard-container">
-    <div className={userThemePreference === "Dark" ? "dashboard-container Dark" : "dashboard-container"}>
-      <section className="dashboard-leftside-container">
-        <section className="dashboard-header">
-          <section className="dashboard-userdata">
-            <div className="db-userdata-username">
-              <p>Bienvenido Usuario x</p>
-            </div>
-            <div className="db-userdata-lastconect">
-              <p>Última conexión el ... a las ...</p>
-            </div>
+    <>
+      <section
+        className={
+          userThemePreference === "Dark"
+            ? "dashboard-container Dark"
+            : "dashboard-container"
+        }
+      >
+        <section className="dashboard-leftside-container">
+          <section className="dashboard-header">
+            <section className="dashboard-userdata">
+              <div className="db-userdata-username">
+                <p>Bienvenido: {authUser.displayName}</p>
+              </div>
+              <div className="db-userdata-lastconect">
+                <p>
+                  Última conexión {convertTimestampToDate(authUser.lastLoginAt)}
+                </p>
+              </div>
+            </section>
+            {/* <p>Bienvenido Usuario x</p> */}
           </section>
-          <p>Bienvenido Usuario x</p>
+          <section className="dashboard-body">
+            <section className="dashboard-body-left-col-container">
+              <div>
+                <SimpleCard Header={"Próximos cumpleaños"} MaxRrows={"3"} />
+              </div>
+              <div>
+                <SimpleCard Header={"Líderes"} MaxRrows={"7"} />
+              </div>
+            </section>
+            <section className="dashboard-body-right-col-container">
+              <div className="dashboard-chart-containers">
+                <div>
+                  <CardChartComponent
+                    id={1}
+                    CardChartData={"25"}
+                    header={"IverRegiones"}
+                    text={"50"}
+                    text2={"Var % en últimos 3 días"}
+                  />
+                </div>
+                <div>
+                  <CardChartComponent
+                    id={2}
+                    CardChartData={"15"}
+                    header={"Jóvenes"}
+                    text={"950"}
+                    text2={"var var var"}
+                  />
+                </div>
+                <div>
+                  <CardChartComponent
+                    id={3}
+                    CardChartData={"45"}
+                    header={"Inscrip. Entrega2"}
+                    text={"15"}
+                    text2={"13-09-1984"}
+                  />
+                </div>
+                <div>
+                  <CardChartComponent
+                    id={4}
+                    CardChartData={"65"}
+                    header={"Inscrip. L&R"}
+                    text={"950"}
+                    text2={"22-10-2024"}
+                  />
+                </div>
+              </div>
+              <DBChart
+                ChartData={AppointedDates}
+                ChartType={"bar"}
+                ChartId={"Cosa"}
+                ChartTitle={"Gráfico Inscripciones"}
+              />
+            </section>
+          </section>
         </section>
-        <section className="dashboard-body">
-          <section className="dashboard-body-left-col-container">
-            <div>
-              <SimpleCard Header={"Próximos cumpleaños"} MaxRrows={"3"} />
-            </div>
-            <div>
-              <SimpleCard Header={"Líderes"} MaxRrows={"7"} />
-            </div>
-          </section>
-          <section className="dashboard-body-right-col-container">
-            <div className="dashboard-chart-containers">
-              <div>
-                <CardChartComponent
-                  id={1}
-                  CardChartData={"25"}
-                  header={"IverRegiones"}
-                  text={"50"}
-                  text2={"Var % en últimos 3 días"}
-                />
-              </div>
-              <div>
-                <CardChartComponent
-                  id={2}
-                  CardChartData={"15"}
-                  header={"Jóvenes"}
-                  text={"950"}
-                  text2={"var var var"}
-                />
-              </div>
-              <div>
-                <CardChartComponent
-                  id={3}
-                  CardChartData={"45"}
-                  header={"Inscrip. Entrega2"}
-                  text={"15"}
-                  text2={"13-09-1984"}
-                />
-              </div>
-              <div>
-                <CardChartComponent
-                  id={4}
-                  CardChartData={"65"}
-                  header={"Inscrip. L&R"}
-                  text={"950"}
-                  text2={"22-10-2024"}
-                />
-              </div>
-            </div>
-            <DBChart
-              ChartData={AppointedDates}
-              ChartType={"bar"}
-              ChartId={"Cosa"}
-              ChartTitle={"Gráfico Inscripciones"}
-            />
-          </section>
-        </section>
-      </section>
 
-      <section className="dashboard-rightside-container">
-        <CalendarAndSummary />
+        <section className="dashboard-rightside-container">
+          <CalendarAndSummary />
+        </section>
       </section>
-    </div>
+    </>
   );
 };
 

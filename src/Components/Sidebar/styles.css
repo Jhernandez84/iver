@@ -1,16 +1,17 @@
-html,
-body,
-#root,
-.parent-container {
-  height: 100%;
-}
-
-.main-container {
+.sbar-container {
   display: flex;
   flex-direction: row;
   position: relative;
   flex-wrap: wrap;
-  height: calc(100vh - 100px);
+  /* height: calc(100vh - 100px); */
+  height: 100vh;
+  /* align-items: center; */
+  justify-content: center;
+  background-color: var(--primary-bg-color-light);
+}
+
+.sbar-container .Dark {
+  background-color: var(--primary-bg-strong-color-dark);
 }
 
 .content-container {
@@ -34,7 +35,7 @@ body,
   gap: 20px;
   /* height: 100%; */
   border-radius: 15px;
-  background-color: #1f2937;
+  /* background-color: #1f2937; */
 }
 
 .sidebar-logo-section {
@@ -87,7 +88,7 @@ body,
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #1f2937;
+  /* background-color: #1f2937; */
 }
 
 .collapsed-sidebar .sidebar-content-text {
@@ -107,7 +108,7 @@ body,
   margin-right: 10px;
   align-self: center;
   color: #f7f7f7;
-  background-color: #1f2937;
+  /* background-color: #1f2937; */
 }
 
 .sidebar-content-icon svg {
@@ -118,7 +119,14 @@ body,
   width: 70px;
   overflow: hidden;
   transition: width 0.3s ease; /* Add smooth transition */
-  background-color: #1f2937;
+  background-color: var(--primary-bg-header-color-light);
+}
+
+.collapsed-sidebar .Dark {
+  width: 70px;
+  overflow: hidden;
+  transition: width 0.3s ease; /* Add smooth transition */
+  background-color: var(--primary-bg-header-color-dark);
 }
 
 .expanded-sidebar {
@@ -131,7 +139,7 @@ body,
 
 .sidebar-content-container {
   position: relative;
-  background-color: #1f2937;
+  /* background-color: #1f2937; */
 }
 
 .sidebar-content-text {

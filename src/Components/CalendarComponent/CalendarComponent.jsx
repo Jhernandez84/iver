@@ -1,15 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useContext} from "react";
 import { CalendarMonthlyView } from "./CalendarMonthlyView";
 import { CalendarWeeklyView } from "./CalendarWeeklyView";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 
 import "./styles.css";
 // Este componente va a renderizar todo el calendario
 
 const CalendarComponent = () => {
+  const { userThemePreference } = useContext(ThemeContext);
+
   // const [calendarView, setCalendarView] = useState("month");
 
   const [currDate, setCurrDate] = useState(new Date());
@@ -206,7 +209,13 @@ const CalendarComponent = () => {
   ];
 
   return (
-    <section className="Calendar-container-component">
+    <section
+    className={
+      userThemePreference === "Dark"
+        ? "Calendar-container-component Dark"
+        : "Calendar-container-component"
+    }>
+     {/* <section className="Calendar-container-component"> */}
       <section className="Calendar-header-and-selectors">
         <section className="calendar-render-header">
           <section className="calendar-render-header-selector">

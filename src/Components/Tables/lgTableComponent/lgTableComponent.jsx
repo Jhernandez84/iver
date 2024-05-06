@@ -11,6 +11,8 @@ import { HiSearch, HiArrowUp, HiArrowDown } from "react-icons/hi";
 import "./lgTableStyles.css";
 
 import LGTableModal from "./lgTableModal";
+import LGtableModalQuickEntry from "./lgTableModalQuickEntry";
+
 import CardChartComponent from "@/Components/CardsCharts/CardChartComponent";
 import sampledata from "@/Components/Firebase/sampledata";
 
@@ -60,6 +62,8 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
   ];
 
   const [isModalOpen, setModalOpen] = useState(false);
+  const [addNewRecord, setAddNewRecord] = useState(false);
+
   const [selectedItem, setSelectedItem] = useState(null);
 
   const openModal = (item) => {
@@ -70,6 +74,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
 
   const closeModal = () => {
     setModalOpen(false);
+    setAddNewRecord(false);
   };
 
   const [valueToFind, setvalueToFind] = useState("");
@@ -84,7 +89,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
   const [isChecked, setIsChecked] = useState(false); // State to track checkbox state
 
   const firstFilter = [
-    { Name: "Todos", value:'' },
+    { Name: "Todos", value: "" },
     { Name: "Director", value: "Director" },
     { Name: "Presidente", value: "Presidente" },
     { Name: "Vice-Presidente", value: "Vice-Presidente" },
@@ -162,11 +167,15 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
 
     // If valueToFind is empty, set filteredArray to DBdata directly
     if (isChecked) {
-      searchString = ""
-      if (selectedFirstFilter) {searchString = selectedFirstFilter.toLowerCase()}
-      if (selectedSecondFilter) searchString = selectedSecondFilter.toLowerCase();
+      searchString = "";
+      if (selectedFirstFilter) {
+        searchString = selectedFirstFilter.toLowerCase();
+      }
+      if (selectedSecondFilter)
+        searchString = selectedSecondFilter.toLowerCase();
       if (selectedThirdFilter) searchString = selectedThirdFilter.toLowerCase();
-      if (selectedFourthFilter) searchString = selectedFourthFilter.toLowerCase();
+      if (selectedFourthFilter)
+        searchString = selectedFourthFilter.toLowerCase();
       if (selectedFifthFilter) searchString = selectedFifthFilter.toLowerCase();
     } else {
       if (!valueToFind) {
@@ -200,7 +209,11 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
 
   const handleSearchInput = (e) => {
     setvalueToFind(e.target.value);
-    console.log(valueToFind);
+  };
+
+  const handleAddNewRecord = () => {
+    setAddNewRecord(true);
+    console.log(addNewRecord);
   };
 
   useEffect(() => {
@@ -215,6 +228,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
         {isModalOpen && (
           <LGTableModal closeModal={closeModal} item={selectedItem} />
         )}
+        {addNewRecord && <LGtableModalQuickEntry closeModal={closeModal} />}
         <section className="charts-container">
           <div>
             <CardChartComponent
@@ -264,6 +278,14 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
                 type="text"
                 placeholder={"Buscar..."}
                 onChange={handleSearchInput}
+              />
+            </section>
+            <section className="table-header-quick-entry">
+              <input
+                className="btn_quick_entry"
+                type="button"
+                value="+ Nuevo Registro"
+                onClick={handleAddNewRecord}
               />
             </section>
             <section className="table_header_filter_selector">

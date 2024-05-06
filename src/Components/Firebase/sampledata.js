@@ -1,5 +1,6 @@
 const sampledata = [
   {
+    id: 1,
     Rut: 15957386,
     Nombres: "Jonathan Antonio",
     ApellidoPaterno: "Hernandez",
@@ -35,6 +36,7 @@ const sampledata = [
     LugarOrigen: "Iver Central",
   },
   {
+    id: 2,
     Rut: 17388935,
     Nombres: "Daniela Valeska",
     ApellidoMaterno: "Quevedo",
@@ -66,6 +68,7 @@ const sampledata = [
     LugarOrigen: "Iver Central",
   },
   {
+    id: 3,
     Rut: 14456545,
     Nombres: "Roberto Carlos",
     ApellidoMaterno: "Astudillo",

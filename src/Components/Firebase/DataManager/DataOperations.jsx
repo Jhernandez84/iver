@@ -62,6 +62,7 @@ export  const CreateRecord = async (collectionName, newData) => {
         throw error;
     }
 };
+
 export const UpdateRecord = async (collectionName, id, newData) => {
     try {
         const docRef = db.collection(collectionName).doc(id);

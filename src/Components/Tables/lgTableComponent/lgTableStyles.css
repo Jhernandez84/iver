@@ -87,6 +87,16 @@ td {
   transition: 0.2s;
 }
 
+.btn_quick_entry {
+  height: 37px;
+  border-radius: 25px;
+  background-color: var(--primary-bg-header-color-dark);
+  color: #0d9488;
+  cursor: pointer;
+
+  border-color: #0d9488;
+}
+
 .table_body {
   width: 100%;
   max-height: calc(89% - 0.8rem);
