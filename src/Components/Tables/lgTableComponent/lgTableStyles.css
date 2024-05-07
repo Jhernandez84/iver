@@ -1,3 +1,8 @@
+/* *{
+  font-size: small;
+
+} */
+
 .table-container {
   margin: 0;
   padding: 0;
@@ -120,10 +125,10 @@ thead th {
   width: 70px;
   gap: 5px;
 }
-
+/* 
 tbody tr {
   font-size: small;
-}
+} */
 
 tbody tr:nth-child(even) {
   background-color: #0000000b;

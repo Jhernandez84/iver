@@ -191,6 +191,7 @@ const LGTableModal = ({ closeModal, item }) => {
                 id="name"
                 className="input-name"
                 placeholder={FechaNacimiento}
+                value={FechaNacimiento}
               />
             </div>
           </div>

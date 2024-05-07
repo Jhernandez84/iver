@@ -1,14 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useState, useCallback } from "react";
-import { CreateRecord } from "../../Firebase/DataManager/DataOperations";
+import {
+  CreateRecord,
+  checkValueExists,
+} from "../../Firebase/DataManager/DataOperations";
 
 const LGtableModalQuickEntry = ({ closeModal }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleToggle = (index) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+
+  const [userAlreadyRecorded, setUserAlreadyRecorded] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -98,6 +103,36 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
     },
     [newEntryData]
   );
+
+  useEffect(() => {
+    if (
+      newEntryData.Rut.length === 8 ||
+      (newEntryData.Rut.length === 7 && parseInt(newEntryData.Rut[0]) > 5)
+    ) {
+      handleValueExists();
+    } else {
+      console.log("menos de 8");
+    }
+  }, [newEntryData.Rut]);
+
+  const handleValueExists = async () => {
+    try {
+      const exists = await checkValueExists(
+        "BDGeneralIglesia",
+        "Rut",
+        newEntryData.Rut
+      );
+      if (exists) {
+        setUserAlreadyRecorded(true);
+        console.log("Este rut ya está creado");
+      } else {
+        setUserAlreadyRecorded(false);
+        console.log("Este rut no está creado");
+      }
+    } catch (error) {
+      console.error("Error getting data:", error);
+    }
+  };
 
   const handleSaveData = async () => {
     try {
@@ -242,6 +277,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
                             placeholder="Ingrese números"
                             onChange={getNewEntryData}
                             value={newEntryData.Rut}
+                            disabled={userAlreadyRecorded ? true : false}
                           />
                         </div>
                         <div>
