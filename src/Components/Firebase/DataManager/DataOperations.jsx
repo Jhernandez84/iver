@@ -66,9 +66,43 @@ export const checkValueExists = async (collectionName, fieldName, value) => {
       .where(fieldName, "==", value)
       .get();
 
-    return !querySnapshot.empty;
+    if (!querySnapshot.empty) {
+      const docId = querySnapshot.docs[0].id;
+      return { exists: true, docId: docId };
+    } else {
+      return { exists: false, docId: null };
+    }
   } catch (error) {
     console.error("Error checking value existence:", error);
+    throw error;
+  }
+};
+
+export const GetStoredData = async (collectionName, docId) => {
+  try {
+    if (!collectionName || typeof collectionName !== "string") {
+      throw new Error("Invalid collectionName parameter");
+    }
+
+    if (!docId || typeof docId !== "string") {
+      throw new Error("Invalid docId parameter");
+    }
+
+    const docRef = db.collection(collectionName).doc(docId);
+    const docSnapshot = await docRef.get();
+
+    if (!docSnapshot.exists) {
+      throw new Error(`No record found for the provided document ID: ${docId}`);
+    }
+
+    const data = {
+      id: docSnapshot.id,
+      ...docSnapshot.data(),
+    };
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
     throw error;
   }
 };

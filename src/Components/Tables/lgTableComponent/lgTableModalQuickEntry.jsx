@@ -5,7 +5,11 @@ import { useState, useCallback } from "react";
 import {
   CreateRecord,
   checkValueExists,
+  GetStoredData,
+  UpdateRecord,
 } from "../../Firebase/DataManager/DataOperations";
+
+import Swal from "sweetalert2";
 
 const LGtableModalQuickEntry = ({ closeModal }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -92,7 +96,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
   };
 
   const [newEntryData, setNewEntryData] = useState(NewDataFields);
-  console.log(newEntryData);
+  // console.log(newEntryData);
 
   const getNewEntryData = useCallback(
     ({ target }) => {
@@ -111,19 +115,23 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
     ) {
       handleValueExists();
     } else {
-      console.log("menos de 8");
+      // console.log("menos de 8");
     }
   }, [newEntryData.Rut]);
 
   const handleValueExists = async () => {
     try {
-      const exists = await checkValueExists(
+      const { exists, docId } = await checkValueExists(
         "BDGeneralIglesia",
         "Rut",
         newEntryData.Rut
       );
+
       if (exists) {
         setUserAlreadyRecorded(true);
+        const storedData = await GetStoredData("BDGeneralIglesia", docId);
+        setNewEntryData(storedData); // Update newEntryData with stored data
+        console.log(storedData);
         console.log("Este rut ya está creado");
       } else {
         setUserAlreadyRecorded(false);
@@ -134,7 +142,8 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
     }
   };
 
-  const handleSaveData = async () => {
+  // Con esta función estoy trayendo la información y pasandola a la variable newEntryData
+  const handleSaveRecord = async () => {
     try {
       const docId = await CreateRecord("BDGeneralIglesia", newEntryData);
       console.log("Document ID:", docId);
@@ -145,101 +154,41 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
     }
   };
 
-  const AccordionComponent0 = () => (
-    // <section className="modal-main-data-container">
-    <section className="modal-personal-data-section">
-      <div className="modal-personal-data-section-container">
-        <div className="modal-personal-data-section-right-col">
-          <div>
-            <div className="form-input">
-              <label htmlFor="Rut" className="input-label">
-                Rut (Identificador único)
-              </label>
-              <input
-                name="Rut"
-                type="text"
-                maxLength={8}
-                id="InputRut"
-                className="input-name"
-                placeholder="Ingrese números"
-                onChange={getNewEntryData}
-                value={newEntryData.Rut}
-              />
-            </div>
-            <div>
-              <label htmlFor="" className="input-label">
-                Nombres
-              </label>
-              <input
-                type="text"
-                id="InputNombres"
-                name="Nombres"
-                className="input-name"
-                placeholder="Nombres"
-                onChange={getNewEntryData}
-                value={newEntryData.Nombres}
-              />
-            </div>
-            <div>
-              <label htmlFor="" className="input-label">
-                Apellido Paterno
-              </label>
-              <input
-                name="ApellidoPaterno"
-                type="text"
-                id="InputAppPaterno"
-                className="input-name"
-                placeholder="Apellido Paterno"
-                onChange={getNewEntryData}
-                value={newEntryData.ApellidoPaterno}
-              />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor="name" className="input-label">
-                Apellido Materno
-              </label>
-              <input
-                name="ApellidoMaterno"
-                type="text"
-                id="InputAppMaterno"
-                className="input-name"
-                placeholder="Apellido Materno"
-                onChange={getNewEntryData}
-                value={newEntryData.ApellidoMaterno}
-              />
-            </div>
-            <div>
-              <label htmlFor="" className="input-label">
-                Fecha Nacimiento
-              </label>
-              <input
-                name="FechaNacimiento"
-                type="date"
-                id="InputFecNacimiento"
-                className="input-name"
-                placeholder="01/01/2001"
-                onChange={getNewEntryData}
-                value={newEntryData.FechaNacimiento}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="modal-personal-data-section-left-col">
-          <div className="input-personal-data-img">
-            <img
-              src="https://as2.ftcdn.net/v2/jpg/00/10/94/25/1000_F_10942596_BKWQk31AR2MRSUXKO2oD5emgbyUNp2Tq.jpg"
-              alt="Nuevo usuario"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  const handleUpdateRecord = async () => {
+    UpdateRecord("BDGeneralIglesia", newEntryData.id, newEntryData);
+
+    // const Toast = Swal.mixin({
+    //   toast: true,
+    //   position: "top-end",
+    //   showConfirmButton: false,
+    //   timer: 3000,
+    //   timerProgressBar: true,
+    //   didOpen: (toast) => {
+    //     toast.onmouseenter = Swal.stopTimer;
+    //     toast.onmouseleave = Swal.resumeTimer;
+    //   },
+    // });
+    // Toast.fire({
+    //   icon: "success",
+    //   title: "Registro actualizado exitosamente",
+    // });
+
+    closeModal();
+
+    Swal.fire({
+      title: "Actualización Exitosa",
+      text: "El registro fue actualizado exitosamente!",
+      icon: "success"
+    });
+
+  };
+
+  const HandleClearData = () => {
+    setNewEntryData(NewDataFields);
+    setUserAlreadyRecorded(false);
+  };
 
   return (
-    // El modal tendrá 3 filas para guardar datos 10,80,10
     <div className="modal-overlay">
       <div className="modal">
         <span className="close" onClick={closeModal}>
@@ -450,7 +399,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
                       onChange={getNewEntryData}
                       value={newEntryData.LugarOrigen}
                     >
-                      <option value="Seleccione" selected disabled>
+                      <option value="Seleccione" disabled>
                         Seleccione
                       </option>
                       {options6.map((option, index) => (
@@ -467,14 +416,23 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
         </section>
 
         <section className="modal-footer-section">
+          <button className="btn-modal" onClick={HandleClearData}>
+            Limpiar
+          </button>
           {newEntryData.Rut &&
           newEntryData.Nombres &&
           newEntryData.ApellidoPaterno &&
           newEntryData.ApellidoMaterno &&
           newEntryData.NumeroContacto ? (
-            <button className="btn-modal" onClick={() => handleSaveData()}>
-              Guardar
-            </button>
+            userAlreadyRecorded ? (
+              <button className="btn-modal" onClick={handleUpdateRecord}>
+                Actualizar
+              </button>
+            ) : (
+              <button className="btn-modal" onClick={handleSaveRecord}>
+                Guardar
+              </button>
+            )
           ) : (
             []
           )}
