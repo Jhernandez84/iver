@@ -1,7 +1,7 @@
 // components/Tooltip.js
 
 import React from 'react';
-import styles from './tooltip.css'
+// import styles from './tooltip.css'
 
 const Tooltip = ({ text, children }) => {
   return (
