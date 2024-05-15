@@ -6,7 +6,7 @@ import { AuthContext } from "@/Context/UserContext/UserContext";
 
 import { Inter } from "next/font/google";
 import SideBarComponent from "@/Components/Sidebar/SideBar";
-import { Html } from "next/document";
+// import { Html } from "next/document";
 import { ThemeProvider } from "@/Context/ThemeContext/ThemeContextComponent";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import '../page.module.css'

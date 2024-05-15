@@ -42,6 +42,7 @@ td {
 
 .table_header {
   height: min(10%, 30px);
+  /* min-width: 100%; */
   background-color: #1e293b;
   padding: 1rem 1rem;
   display: flex;
@@ -309,8 +310,7 @@ label {
 .modal-footer-section {
   display: flex;
   flex-direction: row;
-  justify-content: right;
-  /* padding-right: 50px; */
+  justify-content: space-evenly;
 }
 
 .close {

@@ -155,7 +155,9 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
   };
 
   const handleUpdateRecord = async () => {
-    UpdateRecord("BDGeneralIglesia", newEntryData.id, newEntryData);
+    const { id, ...updatedData } = newEntryData;
+
+    UpdateRecord("BDGeneralIglesia", newEntryData.id, updatedData);
 
     // const Toast = Swal.mixin({
     //   toast: true,
@@ -178,9 +180,8 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
     Swal.fire({
       title: "Actualización Exitosa",
       text: "El registro fue actualizado exitosamente!",
-      icon: "success"
+      icon: "success",
     });
-
   };
 
   const HandleClearData = () => {
@@ -338,7 +339,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
                       type="text"
                       id="Direccion"
                       className="input-name"
-                      placeholder="N Contacto"
+                      placeholder="Dirección"
                       onChange={getNewEntryData}
                       value={newEntryData.Direccion}
                     />
@@ -352,7 +353,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
                       type="text"
                       id="email"
                       className="input-name"
-                      placeholder="N Contacto"
+                      placeholder="Correo Electrónico"
                       onChange={getNewEntryData}
                       value={newEntryData.email}
                     />
@@ -416,26 +417,30 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
         </section>
 
         <section className="modal-footer-section">
-          <button className="btn-modal" onClick={HandleClearData}>
-            Limpiar
-          </button>
-          {newEntryData.Rut &&
-          newEntryData.Nombres &&
-          newEntryData.ApellidoPaterno &&
-          newEntryData.ApellidoMaterno &&
-          newEntryData.NumeroContacto ? (
-            userAlreadyRecorded ? (
-              <button className="btn-modal" onClick={handleUpdateRecord}>
-                Actualizar
-              </button>
+          <div>
+            <button className="btn-modal" onClick={HandleClearData}>
+              Limpiar
+            </button>
+          </div>
+          <div>
+            {newEntryData.Rut &&
+            newEntryData.Nombres &&
+            newEntryData.ApellidoPaterno &&
+            newEntryData.ApellidoMaterno &&
+            newEntryData.NumeroContacto ? (
+              userAlreadyRecorded ? (
+                <button className="btn-modal" onClick={handleUpdateRecord}>
+                  Actualizar
+                </button>
+              ) : (
+                <button className="btn-modal" onClick={handleSaveRecord}>
+                  Guardar
+                </button>
+              )
             ) : (
-              <button className="btn-modal" onClick={handleSaveRecord}>
-                Guardar
-              </button>
-            )
-          ) : (
-            []
-          )}
+              []
+            )}
+          </div>
         </section>
       </div>
     </div>

@@ -18,20 +18,20 @@
   --primary-bg-second-strong-color-light: #1e293b;
 
   /* White Mode Colors */
-  .first-color { 
-    background: #eff0f4; 
+  .first-color {
+    background: #eff0f4;
   }
-    
-  .second-color { 
-    background: #74dbef; 
+
+  .second-color {
+    background: #74dbef;
   }
-  
-  .third-color { 
-    background: #0074e4; 
+
+  .third-color {
+    background: #0074e4;
   }
-  
-  .fourth-color { 
-    background: #264e86; 
+
+  .fourth-color {
+    background: #264e86;
   }
 
   /* Dark Mode Colors */
@@ -50,8 +50,6 @@
   .fourth-color { 
     background: #2a2438; 
   } */
-
-
 }
 
 body {
@@ -68,10 +66,33 @@ body.Dark {
   grid-template-columns: 100px 100%;
   width: 100vw;
   background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
 }
 
 .main-container.Dark {
+  /* background-color: var(--primary-bg-color-dark); */
+  background: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
+}
+
+.sbar-container {
+  background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
+}
+
+.sbar-container.Dark {
   background-color: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
+}
+
+.table-container {
+  background-color: var(--primary-bg-color-light);
+  transition: all 0.5s ease-in-out;
+}
+
+.table-container.Dark {
+  background-color: var(--primary-bg-color-dark);
+  transition: all 0.5s ease-in-out;
 }
 
 /* 

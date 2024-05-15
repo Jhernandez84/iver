@@ -14,7 +14,7 @@ import {
   HiSun,
   HiMoon,
 } from "react-icons/hi";
-import Tooltip from "../Tooltips/Tooptip";
+// import Tooltip from "../Tooltips/Tooptip";
 
 import "../Sidebar/styles.css";
 
@@ -107,11 +107,11 @@ const SideBarComponent = () => {
       >
         <div
           className={
-            isSidebarCollapsed === true && userThemePreference === "Dark"
+            userThemePreference === "Dark" && isSidebarCollapsed === true
               ? "collapsed-sidebar side-bar Dark"
-              : userThemePreference === "Dark"
-              ? "collapsed-sidebar Dark"
-              : "expanded-sidebar side-bar"
+              : isSidebarCollapsed === true
+              ? "collapsed-sidebar side-bar"
+              : "expanded-sidebar side-bar Dark"
           }
         >
           {/* {() => (setShowSideBar(true), setSidebarCollapsed(false))}

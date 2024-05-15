@@ -6,7 +6,6 @@ import { AuthContext } from "@/Context/UserContext/UserContext";
 
 import { Inter } from "next/font/google";
 import SideBarComponent from "@/Components/Sidebar/SideBar";
-import { Html } from "next/document";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -11,7 +11,7 @@ import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import "./styles.css";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 
-const Dashboard = () => {
+export default function Dashboard () {
   const { userThemePreference } = useContext(ThemeContext);
   const { authUser } = useContext(AuthContext);
 
@@ -144,5 +144,3 @@ const Dashboard = () => {
     </>
   );
 };
-
-export default Dashboard;
