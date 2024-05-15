@@ -1,11 +1,8 @@
-'use client'
-
 import React from "react";
 import LGTableComponent from "@/Components/Tables/lgTableComponent/lgTableComponent";
 import sampledata from "@/Components/Firebase/sampledata";
 
 const pagebuilder = () => {
-
   const people = [
     {
       name: "Leslie Alexander",
@@ -326,7 +323,13 @@ const pagebuilder = () => {
       lastSeenDateTime: "2023-01-23T13:23Z",
     },
   ];
-  return <LGTableComponent tableTitle={'Listado de hermanos activos'} tableData={sampledata} />
+
+  return (
+    <LGTableComponent
+      tableTitle={"Listado de hermanos activos"}
+      tableData={sampledata}
+    />
+  );
 };
 
 export default pagebuilder;
