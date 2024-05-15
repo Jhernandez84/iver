@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useContext } from "react";
+import dynamic from 'next/dynamic';
 import { AuthProvider } from "@/Context/UserContext/UserContextComponent";
 import { AuthContext } from "@/Context/UserContext/UserContext";
-
-import { Inter } from "next/font/google";
-import SideBarComponent from "@/Components/Sidebar/SideBar";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const SideBarComponent = dynamic(() => import("@/Components/Sidebar/SideBar"));
+const inter = dynamic(() => import("next/font/google"));
 
 export default function DashboardLayout({ children }) {
   const { userThemePreference } = useContext(ThemeContext);
@@ -29,3 +28,4 @@ export default function DashboardLayout({ children }) {
     </AuthProvider>
   );
 }
+

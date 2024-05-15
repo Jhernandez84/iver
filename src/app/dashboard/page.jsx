@@ -2,37 +2,40 @@
 "use client";
 
 import React, { useContext } from "react";
+import dynamic from "next/dynamic";
 import SimpleCard from "@/Components/SimpleCard/SimpleCard";
-import DBChart from "../../Components/Charts/ChartComponent";
-import CardChartComponent from "@/Components/CardsCharts/CardChartComponent";
-import CalendarAndSummary from "@/Components/CdrAndSummary/CalendarAndSummary";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
-
-import "./styles.css";
 import { AuthContext } from "@/Context/UserContext/UserContext";
 
-export default function Dashboard () {
+import "./styles.css";
+
+const DBChart = dynamic(() => import("../../Components/Charts/ChartComponent"));
+const CardChartComponent = dynamic(() =>
+  import("@/Components/CardsCharts/CardChartComponent")
+);
+const CalendarAndSummary = dynamic(() =>
+  import("@/Components/CdrAndSummary/CalendarAndSummary")
+);
+
+export default function Dashboard() {
   const { userThemePreference } = useContext(ThemeContext);
   const { authUser } = useContext(AuthContext);
 
   console.log(authUser);
-  // const timestamp = (authUser.lastLoginAt)
-
-  // console.log(timestamp)
 
   const convertTimestampToDate = (timestamp) => {
     const date = new Date(timestamp);
 
     const options = {
-      weekday: "long", // 'short', 'long'
-      year: "numeric", // '2-digit', 'numeric'
-      month: "long", // 'short', 'long'
-      day: "numeric", // '2-digit', 'numeric'
-      hour: "numeric", // '2-digit', 'numeric'
-      minute: "numeric", // '2-digit', 'numeric'
-      second: "numeric", // '2-digit', 'numeric'
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
       timeZoneName: "short",
-    }; // 'short', 'long'}
+    };
 
     return date.toLocaleString(undefined, options);
   };
@@ -77,7 +80,6 @@ export default function Dashboard () {
                 </p>
               </div>
             </section>
-            {/* <p>Bienvenido Usuario x</p> */}
           </section>
           <section className="dashboard-body">
             <section className="dashboard-body-left-col-container">
@@ -143,4 +145,4 @@ export default function Dashboard () {
       </section>
     </>
   );
-};
+}

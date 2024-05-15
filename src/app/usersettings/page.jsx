@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import DBChart from "../../Components/Charts/ChartComponent";
-import CalendarDayView from "@/Components/Calendar/CalendarDayView";
-import MainSettingsComponent from "@/Components/MainSettings/MainSettings";
+import dynamic from 'next/dynamic';
+
+const MainSettingsComponent = dynamic(() => import("@/Components/MainSettings/MainSettings"));
 
 const TestCharts = () => {
   return (
@@ -21,3 +21,4 @@ const TestCharts = () => {
 };
 
 export default TestCharts;
+
