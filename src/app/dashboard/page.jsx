@@ -92,49 +92,9 @@ export default function Dashboard() {
             </section>
             <section className="dashboard-body-right-col-container">
               <div className="dashboard-chart-containers">
-                <div>
-                  <CardChartComponent
-                    id={1}
-                    CardChartData={"25"}
-                    header={"IverRegiones"}
-                    text={"50"}
-                    text2={"Var % en últimos 3 días"}
-                  />
-                </div>
-                <div>
-                  <CardChartComponent
-                    id={2}
-                    CardChartData={"15"}
-                    header={"Jóvenes"}
-                    text={"950"}
-                    text2={"var var var"}
-                  />
-                </div>
-                <div>
-                  <CardChartComponent
-                    id={3}
-                    CardChartData={"45"}
-                    header={"Inscrip. Entrega2"}
-                    text={"15"}
-                    text2={"13-09-1984"}
-                  />
-                </div>
-                <div>
-                  <CardChartComponent
-                    id={4}
-                    CardChartData={"65"}
-                    header={"Inscrip. L&R"}
-                    text={"950"}
-                    text2={"22-10-2024"}
-                  />
-                </div>
+                
               </div>
-              <DBChart
-                ChartData={AppointedDates}
-                ChartType={"bar"}
-                ChartId={"Cosa"}
-                ChartTitle={"Gráfico Inscripciones"}
-              />
+
             </section>
           </section>
         </section>

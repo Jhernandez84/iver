@@ -7,13 +7,12 @@ import {
   GetFireBaseDataCount,
 } from "@/Components/Firebase/DataManager/DataOperations";
 
-import { HiSearch, HiArrowUp, HiArrowDown } from "react-icons/hi";
 import "./lgTableStyles.css";
 
 import LGTableModal from "./lgTableModal";
 import LGtableModalQuickEntry from "./lgTableModalQuickEntry";
 
-import CardChartComponent from "@/Components/CardsCharts/CardChartComponent";
+// import CardChartComponent from "@/Components/CardsCharts/CardChartComponent";
 import sampledata from "@/Components/Firebase/sampledata";
 
 const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
@@ -229,7 +228,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
           <LGTableModal closeModal={closeModal} item={selectedItem} />
         )}
         {addNewRecord && <LGtableModalQuickEntry closeModal={closeModal} />}
-        <section className="charts-container">
+        {/* <section className="charts-container">
           <div>
             <CardChartComponent
               id={"lideres"}
@@ -266,7 +265,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
               text2={"Var % en últimos 3 días"}
             />
           </div>
-        </section>
+        </section> */}
         <section className="table">
           <section className="table_header">
             <section className="table_header_title">
