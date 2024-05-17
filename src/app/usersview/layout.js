@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }) {
   return (
     <AuthProvider>
       <div className="main-container">
-        <SideBarComponent />
+        {/* <SideBarComponent /> */}
         {children}
       </div>
     </AuthProvider>

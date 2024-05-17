@@ -72,11 +72,11 @@ export default function Dashboard() {
           <section className="dashboard-header">
             <section className="dashboard-userdata">
               <div className="db-userdata-username">
-                <p>Bienvenido: {authUser.displayName}</p>
+                <p>Bienvenido: {authUser?.displayName}</p>
               </div>
               <div className="db-userdata-lastconect">
                 <p>
-                  Última conexión {convertTimestampToDate(authUser.lastLoginAt)}
+                  Última conexión {convertTimestampToDate(authUser?.lastLoginAt)}
                 </p>
               </div>
             </section>

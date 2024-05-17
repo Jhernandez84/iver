@@ -23,13 +23,14 @@ export default function Home() {
   const [isSidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   return (
-    <body>
-      {/* <SideBarComponent /> */}
-      <LogInPage
-        authUser={authUser}
-        signInWithGoogle={signInWithGoogle}
-        signOut={signOut}
-      />
-    </body>
+    <div>
+      <body>
+        <LogInPage
+          authUser={authUser}
+          signInWithGoogle={signInWithGoogle}
+          signOut={signOut}
+        />
+      </body>
+    </div>
   );
 }
