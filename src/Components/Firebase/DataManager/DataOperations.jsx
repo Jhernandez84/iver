@@ -119,13 +119,21 @@ export const CreateRecord = async (collectionName, newData) => {
   }
 };
 
-export const UpdateRecord = async (collectionName, id, newData) => {
+export const UpdateRecord = async (
+  collectionName,
+  id,
+  newData,
+  userWhoUpdates
+) => {
   try {
     const docRef = db.collection(collectionName).doc(id);
     const doc = await docRef.get();
 
     if (doc.exists) {
       // Document exists, update its data
+      newData.LastUpdateBy = userWhoUpdates;
+      newData.LastUpdatetimeStamp = new Date();
+
       await docRef.update(newData);
       console.log(`Document with ID ${id} updated successfully.`);
     } else {

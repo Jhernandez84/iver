@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState, useCallback } from "react";
 import {
   CreateRecord,
@@ -8,10 +8,12 @@ import {
   GetStoredData,
   UpdateRecord,
 } from "../../Firebase/DataManager/DataOperations";
+import { AuthContext } from "@/Context/UserContext/UserContext";
 
 import Swal from "sweetalert2";
 
 const LGtableModalQuickEntry = ({ closeModal }) => {
+  const { authUser } = useContext(AuthContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const handleToggle = (index) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -157,24 +159,7 @@ const LGtableModalQuickEntry = ({ closeModal }) => {
   const handleUpdateRecord = async () => {
     const { id, ...updatedData } = newEntryData;
 
-    UpdateRecord("BDGeneralIglesia", newEntryData.id, updatedData);
-
-    // const Toast = Swal.mixin({
-    //   toast: true,
-    //   position: "top-end",
-    //   showConfirmButton: false,
-    //   timer: 3000,
-    //   timerProgressBar: true,
-    //   didOpen: (toast) => {
-    //     toast.onmouseenter = Swal.stopTimer;
-    //     toast.onmouseleave = Swal.resumeTimer;
-    //   },
-    // });
-    // Toast.fire({
-    //   icon: "success",
-    //   title: "Registro actualizado exitosamente",
-    // });
-
+    UpdateRecord("BDGeneralIglesia", newEntryData.id, updatedData, authUser.displayName);
     closeModal();
 
     Swal.fire({

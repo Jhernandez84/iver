@@ -182,7 +182,7 @@ const LGTableComponent = ({ tableTitle, tableHeaders, tableData }) => {
         return; // Exit early to avoid unnecessary filtering
       }
       searchString = valueToFind.toLowerCase();
-      console.log(searchString);
+      // console.log(searchString);
     }
 
     // Filter DBdata based on the search string
