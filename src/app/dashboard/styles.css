@@ -2,9 +2,10 @@
   display: grid;
   grid-template-columns: 70% max(20%, 350px);
   justify-content: space-around;
-  width: calc(100vw - 100px);
+  width: 100%;
   background-color: white;
   transition: all 0.5s ease-in-out;
+
 }
 
 .dashboard-container.Dark {

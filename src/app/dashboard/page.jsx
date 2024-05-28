@@ -6,16 +6,17 @@ import dynamic from "next/dynamic";
 import SimpleCard from "@/Components/SimpleCard/SimpleCard";
 import { ThemeContext } from "@/Context/ThemeContext/ThemeContext";
 import { AuthContext } from "@/Context/UserContext/UserContext";
+import { renderCalendar } from "@/Components/CalendarComponent/CalendarHelper";
+import LGTableComponent from "@/Components/Tables/lgTableComponent/lgTableComponent";
+import MyChart from "@/Components/Charts/ChartBuilder";
 
 import "./styles.css";
 
-const DBChart = dynamic(() => import("../../Components/Charts/ChartComponent"));
-const CardChartComponent = dynamic(() =>
-  import("@/Components/CardsCharts/CardChartComponent")
-);
-const CalendarAndSummary = dynamic(() =>
-  import("@/Components/CdrAndSummary/CalendarAndSummary")
-);
+import { CalendarMonthlyView } from "@/Components/CalendarComponent/CalendarMonthlyView";
+
+// const CalendarMonthlyView = dynamic(() =>
+//   import("../../Components/CalendarComponent/CalendarMonthlyView")
+// );
 
 export default function Dashboard() {
   const { userThemePreference } = useContext(ThemeContext);
@@ -59,6 +60,9 @@ export default function Dashboard() {
     { date: "2023-12-16", qty: "1" },
   ];
 
+  const data = renderCalendar(2024, 5);
+  console.log(data);
+
   return (
     <>
       <section
@@ -76,31 +80,34 @@ export default function Dashboard() {
               </div>
               <div className="db-userdata-lastconect">
                 <p>
-                  Última conexión {convertTimestampToDate(authUser?.lastLoginAt)}
+                  Última conexión{" "}
+                  {convertTimestampToDate(authUser?.lastLoginAt)}
                 </p>
               </div>
             </section>
           </section>
-          <section className="dashboard-body">
-            <section className="dashboard-body-left-col-container">
-              <div>
-                <SimpleCard Header={"Próximos cumpleaños"} MaxRrows={"3"} />
-              </div>
-              <div>
-                <SimpleCard Header={"Líderes"} MaxRrows={"7"} />
-              </div>
-            </section>
-            <section className="dashboard-body-right-col-container">
-              <div className="dashboard-chart-containers">
-                
-              </div>
-
-            </section>
+          <section className="dashboard-body-left-col-container">
+            <CalendarMonthlyView
+              DaysArray={renderCalendar(2024, 5)}
+              calendarType="month"
+              calendarView=""
+            />
           </section>
-        </section>
-
-        <section className="dashboard-rightside-container">
-          <CalendarAndSummary />
+          <section className="dashboard-body-right-col-container">
+            <div className="dashboard-chart-containers">
+              <div className="dashboard-leftside-chart">
+                Gráfico Izquierda
+                <MyChart />
+              </div>
+              <div className="dashboard-rightside-chart">
+                Gráfico derecha
+                <MyChart />
+              </div>
+            </div>
+            <div className="dashboard-chart-containers">
+              <LGTableComponent />
+            </div>
+          </section>
         </section>
       </section>
     </>

@@ -26,11 +26,13 @@ function InnerLayout({ children }) {
 export default function RootLayout({ children }) {
   return (
     <html>
+      <body className="main-container">
         <ThemeProvider>
           <AuthProvider>
             <InnerLayout>{children}</InnerLayout>
           </AuthProvider>
         </ThemeProvider>
+      </body>
     </html>
   );
 }

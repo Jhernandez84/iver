@@ -1,8 +1,11 @@
+"use client";
+
 import React, { useEffect } from "react";
 import { useState } from "react";
 import CalendarModal from "./CalendarModal";
 import CalendarModalAppointments from "./CalendarModalAppointments";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { renderCalendar } from "./CalendarHelper";
 
 import "./styles.css";
 
@@ -16,8 +19,6 @@ export const CalendarMonthlyView = ({
   const [currFormattedDate, setCurrFormattedDate] = useState(
     currDate.toISOString().split("T")[0]
   );
-  const [currYear, setCurrYear] = useState(currDate.getFullYear());
-  const [currMonth, setCurrMonth] = useState(currDate.getMonth());
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isModalAppointmentOpen, setModalAppointmentOpen] = useState(false);
@@ -29,11 +30,11 @@ export const CalendarMonthlyView = ({
     setSelectedDate(date);
     setModalOpen(true);
   };
-  
+
   const handlAppointmentTime = (date, time) => {
     console.log("appointment" + date.day);
     setSelectedDate(date.day);
-    setSelectedTime(time)
+    setSelectedTime(time);
     setModalAppointmentOpen(true);
   };
 
@@ -53,7 +54,11 @@ export const CalendarMonthlyView = ({
     >
       {/* <section className="calendar-header">Header</section> */}
       {isModalAppointmentOpen && (
-        <CalendarModalAppointments closeModal={closeModal} item={selectedDate} time={selectedTime}/>
+        <CalendarModalAppointments
+          closeModal={closeModal}
+          item={selectedDate}
+          time={selectedTime}
+        />
       )}
       {isModalOpen && (
         <CalendarModal closeModal={closeModal} item={selectedDate} />
@@ -64,7 +69,9 @@ export const CalendarMonthlyView = ({
           <table>
             <thead className="calendar-render-body-headers">
               {calendarView === "WeekView" ? (
-                DaysArray.map((day, index) => <tr key={index}>Lunes ( {day.day} )</tr>)
+                DaysArray.map((day, index) => (
+                  <tr key={index}>Lunes ( {day.day} )</tr>
+                ))
               ) : (
                 <>
                   <tr>Lun</tr>
