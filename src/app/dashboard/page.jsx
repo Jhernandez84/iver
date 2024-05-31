@@ -72,7 +72,7 @@ export default function Dashboard() {
             : "dashboard-container"
         }
       >
-        <section className="dashboard-leftside-container">
+        <section className="dbc-left">
           <section className="dashboard-header">
             <section className="dashboard-userdata">
               <div className="db-userdata-username">
@@ -86,28 +86,32 @@ export default function Dashboard() {
               </div>
             </section>
           </section>
-          <section className="dashboard-body-left-col-container">
+          <div className="db-left-container">
             <CalendarMonthlyView
               DaysArray={renderCalendar(2024, 5)}
               calendarType="month"
               calendarView=""
             />
-          </section>
-          <section className="dashboard-body-right-col-container">
-            <div className="dashboard-chart-containers">
-              <div className="dashboard-leftside-chart">
-                Gráfico Izquierda
-                <MyChart />
-              </div>
-              <div className="dashboard-rightside-chart">
-                Gráfico derecha
-                <MyChart />
-              </div>
+          </div>
+          <div className="db-left-container">
+            <h3>varias cosas</h3>
+            <h3>varias cosas</h3>
+          </div>
+        </section>
+        <section className="dbc-right">
+          <div className="dbc-right-charts">
+            <div className="chart left">
+              Gráfico Izquierda
+              <MyChart chrTitle="Gráfico 1" />
             </div>
-            <div className="dashboard-chart-containers">
-              <LGTableComponent />
+            <div className="chart rigth">
+              Gráfico derecha
+              <MyChart chrTitle="Gráfico 2" />
             </div>
-          </section>
+          </div>
+          <div className="dbc-right-table">
+            {/* <LGTableComponent /> */}
+          </div>
         </section>
       </section>
     </>

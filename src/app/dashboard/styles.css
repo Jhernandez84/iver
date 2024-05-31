@@ -1,93 +1,55 @@
 .dashboard-container {
   display: grid;
-  grid-template-columns: 70% max(20%, 350px);
+  /* grid-template-columns: max(20%, 350px) max(80%, 350px); */
+  grid-template-columns: 25% 75%;
   justify-content: space-around;
-  width: 100%;
   background-color: white;
   transition: all 0.5s ease-in-out;
-
+  border: solid 1px;
 }
 
 .dashboard-container.Dark {
   background-color: var(--primary-bg-color-dark);
   transition: all 0.5s ease-in-out;
-
 }
 
-.dashboard-container .dashboard-leftside-container {
+.dashboard-container .dbc-left {
   display: grid;
-  grid-template-rows: 7% auto;
-  gap: 10px;
+  grid-template-rows: 12% 28% 30% 30%;
+  border: solid 1px;
+  padding: 5px 10px 0 10px;
+  align-items: start;
 }
 
-.dashboard-container .dashboard-leftside-container .dashboard-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* border: solid 1px; */
-  /* border-radius: 25px; */
-  /* border-color: aquamarine; */
-  margin-left: 15px;
-  padding: 5px;
-  width: calc(100% - 15px);
+
+.dashboard-container .dbc-left .dashboard-header{
+  background-color: var(--primary-bg-header-color-dark);
+  border-radius: 25px;
+  margin-top: 15px;
+  padding-left: 15px;
 }
 
-.dashboard-container
-  .dashboard-leftside-container
-  .dashboard-header
-  .dashboard-userdata {
+.dashboard-container .dbc-right {
   display: grid;
-  grid-template-rows: 60% auto;
-  margin-left: 50px;
+  grid-template-rows: 40% 60%;
+  /* width: 100%; */
 }
 
-.dashboard-container
-  .dashboard-leftside-container
-  .dashboard-header
-  .dashboard-userdata 
-  .db-userdata-username
-  {
-    font-size: larger;
-  }
-
-  .dashboard-container
-  .dashboard-leftside-container
-  .dashboard-header
-  .dashboard-userdata 
-  .db-userdata-lastconect
-  {
-    font-size: xx-small;
-  }
-
-.dashboard-container .dashboard-leftside-container .dashboard-body {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  gap: 20px;
-}
-
-.dashboard-container
-  .dashboard-leftside-container
-  .dashboard-body
-  .dashboard-body-left-col-container {
-  display: grid;
-  grid-template-rows: 30% auto;
-  gap: 20px;
-}
-
-.dashboard-container
-  .dashboard-leftside-container
-  .dashboard-body
-  .dashboard-body-right-col-container {
-  display: grid;
-  grid-template-rows: 30% auto;
-  gap: 20px;
-}
-
-.dashboard-container
-  .dashboard-leftside-container
-  .dashboard-body
-  .dashboard-body-right-col-container
-  .dashboard-chart-containers {
+.dashboard-container .dbc-right .dbc-right-charts {
   display: grid;
   grid-template-columns: 50% 50%;
+  padding: 15px;
+  /* justify-content: space-between; */
+}
+.dashboard-container .dbc-right .dbc-right-charts .chart {
+  margin-left: 15px;
+}
+
+.dashboard-container .dbc-right .dbc-right-charts .chart {
+  /* display: block; */
+  /* width: calc(100% - 50px); */
+}
+
+.dashboard-container .dbc-right .dbc-right-table {
+  width: 40%;
 }

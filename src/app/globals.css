@@ -63,7 +63,7 @@ body.Dark {
 
 .main-container {
   display: grid;
-  grid-template-columns: 100px 100%;
+  grid-template-columns: 100px calc(100% - 101px);
   width: 100vw;
   background-color: var(--primary-bg-color-light);
   transition: all 0.5s ease-in-out;
