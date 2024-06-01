@@ -1,22 +1,18 @@
 .bdc-container {
   display: grid;
   grid-template-columns: auto;
-  border: solid 1px;
-  border-color: aquamarine;
-  padding: 25px;
-  margin: 0 25px 0 15px;
-  border-radius: 25px;
+  /* margin: 0 25px 0 15px; */
+  border-radius: 20px;
+  width: 100%;
 }
 
 .bdc-detail {
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 23% auto 20%;
   align-items: center;
   margin: 5px;
-  border: solid 1px;
-  border-color: aquamarine;
-  border-radius: 25px;
+  border-radius: 20px;
   background-color: #334155;
   height: 55px;
 }
@@ -30,9 +26,25 @@
 .bdc-detail .bdc-detail-name-date {
   display: grid;
   grid-template-rows: 50% 50%;
-  gap: 5px;
+  /* gap: 5px; */
 }
 
 .bdc-detail-center-date {
   font-size: small;
+}
+
+.bcd-evt-btn {
+  font-size: small;
+  cursor: pointer;
+  color: white;
+  background-color: var(--primary-bg-header-color-dark);
+  border-radius: 20px;
+  border: none;
+  height: 25px;
+  width: 45px;
+}
+
+.bcd-evt-btn:hover {
+  background-color: var(--primary-bg-strong-color-dark);
+  transition:ease-in 0.2s;
 }

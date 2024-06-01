@@ -99,16 +99,12 @@ const SimpleCard = ({ Header, MaxRrows }) => {
               <div className="bdc-detail-center-name">{item.name}</div>
               <div className="bdc-detail-center-date">{item.date}</div>
             </div>
+            <div>
+              <input className="bcd-evt-btn" type="button" value="ver" />
+            </div>
           </section>
         );
       })}
-      {/* {Data.length > 3 ? (
-        <section className="cdr_smry_more_events">
-          <div>Cargar próximos {Data.length - 3} eventos</div>
-        </section>
-      ) : (
-        []
-      )} */}
     </section>
   );
 };

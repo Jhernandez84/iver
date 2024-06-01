@@ -1,5 +1,7 @@
 // components/MyChart.js
-import { Line, PolarArea } from "react-chartjs-2";
+import "./CBStyles.css";
+
+import { Line, Bar, PolarArea } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -23,13 +25,17 @@ ChartJS.register(
   Legend
 );
 
-const MyChart = ({ chrTitle }) => {
-  const data = {
+const MyChart = ({ chrTitle, chrDataLabel }) => {
+
+  // const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-bg-header-color-dark').trim();
+  const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-bg-color-light').trim();
+
+ const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
-        label: "My First dataset",
-        backgroundColor: "rgba(75,192,192,0.2)",
+        label: chrDataLabel,
+        backgroundColor: bgColor,
         borderColor: "rgba(75,192,192,1)",
         data: [1, 59, 80, 81, 56, 55, 100],
       },
@@ -47,6 +53,9 @@ const MyChart = ({ chrTitle }) => {
         display: true,
         text: chrTitle,
       },
+    },
+    layout: {
+      backgroundColor: bgColor, // Setting the chart area background color
     },
   };
 

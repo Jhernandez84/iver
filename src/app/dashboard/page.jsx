@@ -94,23 +94,31 @@ export default function Dashboard() {
             />
           </div>
           <div className="db-left-container">
-            <h3>varias cosas</h3>
-            <h3>varias cosas</h3>
+            <h1 className="dashboard-header">Próximos eventos (+ nuevo)</h1>
+            <SimpleCard MaxRrows={3}/>
+          </div>
+          <div className="db-left-container-redes">
+            <h1 className="dashboard-header">Iver Regiones</h1>
+            <div>
+              <img src={authUser ? authUser.photoURL : ""} />
+              <img src={authUser ? authUser.photoURL : ""} />
+              <img src={authUser ? authUser.photoURL : ""} />
+              <img src={authUser ? authUser.photoURL : ""} />
+              <img src={authUser ? authUser.photoURL : ""} />
+            </div>
           </div>
         </section>
         <section className="dbc-right">
           <div className="dbc-right-charts">
             <div className="chart left">
-              Gráfico Izquierda
-              <MyChart chrTitle="Gráfico 1" />
+              <MyChart chrTitle="Gráfico 1" chrDataLabel="Visualización 1" />
             </div>
             <div className="chart rigth">
-              Gráfico derecha
-              <MyChart chrTitle="Gráfico 2" />
+              <MyChart chrTitle="Gráfico 2" chrDataLabel="Visualización 2" />
             </div>
           </div>
           <div className="dbc-right-table">
-            {/* <LGTableComponent /> */}
+            Acá va una tabla para seleccionar usuarios u otros
           </div>
         </section>
       </section>
