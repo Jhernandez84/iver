@@ -18,7 +18,7 @@ import {
   HiAcademicCap,
 } from "react-icons/hi";
 
-const SimpleCard = ({ Header, MaxRrows }) => {
+const SimpleCard = ({ CarData, Header, MaxRrows }) => {
   const iconSize = "25px";
 
   const Data = [

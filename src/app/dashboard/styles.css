@@ -3,12 +3,12 @@
   grid-template-columns: 25% 75%;
   justify-content: space-around;
   background-color: white;
-  transition: all 0.5s ease-in-out;
+  /* transition: all 0.5s ease-in-out; */
 }
 
 .dashboard-container.Dark {
   background-color: var(--primary-bg-color-dark);
-  transition: all 0.5s ease-in-out;
+  /* transition: all 0.5s ease-in-out; */
 }
 
 .dashboard-container .dbc-left {
@@ -46,7 +46,7 @@
 
 .dashboard-container .dbc-right {
   display: grid;
-  grid-template-rows: 45% 55%;
+  grid-template-rows: 40% 60%;
   /* width: 100%; */
 }
 

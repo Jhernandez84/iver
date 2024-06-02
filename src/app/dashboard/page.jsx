@@ -95,17 +95,18 @@ export default function Dashboard() {
           </div>
           <div className="db-left-container">
             <h1 className="dashboard-header">Próximos eventos (+ nuevo)</h1>
-            <SimpleCard MaxRrows={3}/>
+            <SimpleCard MaxRrows={5} />
+            <p>ver calendario</p>
           </div>
           <div className="db-left-container-redes">
-            <h1 className="dashboard-header">Iver Regiones</h1>
+            {/* <h1 className="dashboard-header">Iver Regiones</h1>
             <div>
               <img src={authUser ? authUser.photoURL : ""} />
               <img src={authUser ? authUser.photoURL : ""} />
               <img src={authUser ? authUser.photoURL : ""} />
               <img src={authUser ? authUser.photoURL : ""} />
               <img src={authUser ? authUser.photoURL : ""} />
-            </div>
+            </div> */}
           </div>
         </section>
         <section className="dbc-right">
@@ -118,7 +119,7 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="dbc-right-table">
-            Acá va una tabla para seleccionar usuarios u otros
+            {/* <LGTableComponent /> */}
           </div>
         </section>
       </section>
