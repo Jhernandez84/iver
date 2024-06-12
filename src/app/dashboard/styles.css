@@ -60,11 +60,6 @@
   margin-left: 15px;
 }
 
-.dashboard-container .dbc-right .dbc-right-charts .chart {
-  /* display: block; */
-  /* width: calc(100% - 50px); */
-}
-
 .dashboard-container .dbc-right .dbc-right-table {
   display: flex;
   flex-direction: row;

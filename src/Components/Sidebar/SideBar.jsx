@@ -13,6 +13,9 @@ import {
   HiQuestionMarkCircle,
   HiSun,
   HiMoon,
+  HiCreditCard,
+  HiCurrencyDollar,
+  HiFingerPrint
 } from "react-icons/hi";
 // import Tooltip from "../Tooltips/Tooptip";
 
@@ -87,6 +90,11 @@ const SideBarComponent = () => {
       SBIcon: <HiAdjustments style={{ fontSize: iconSize }} />,
       SBMenu: "Mantenedor",
       SBRout: "/usersettings",
+    },
+    {
+      SBIcon: <HiCurrencyDollar style={{ fontSize: iconSize }} />,
+      SBMenu: "Coffe",
+      SBRout: "/coffe",
     },
     {
       SBIcon: <HiQuestionMarkCircle style={{ fontSize: iconSize }} />,
