@@ -189,10 +189,17 @@ const CoffeManager = () => {
         </section>
         <section className="products-view">
           <div className="products-invoice-details">
-            <p>Detalle de esta venta</p>
-            {products.map((prod, index) => {
-              return <CartAddedProduct key={index} products={prod} />
-            })}
+            <div>
+              <p>Detalle de esta venta</p>
+            </div>
+            <div>
+              <p className="product-addToCart"> ( + )</p>
+            </div>
+            <div className="products-invoice-details">
+              {products.map((prod, index) => {
+                return <CartAddedProduct key={index} products={prod} />;
+              })}
+            </div>
           </div>
           <section className="products-navigation">
             <section className="products-tabs">
@@ -221,7 +228,7 @@ const CoffeManager = () => {
         </section>
       </section>
     </>
-  )
+  );
 };
 
 export default CoffeManager;
