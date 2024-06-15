@@ -4,6 +4,7 @@
   padding: 10px;
   gap: 10px;
   background-color: white;
+  height: 100%;
 }
 
 .coffemanager-container.Dark {
@@ -32,8 +33,14 @@
 }
 
 .products-invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   border-color: aqua;
   border: solid 1px;
+  /* max-height: 40%; */
+  padding: 0 5px 0 5px;
+  overflow: auto;
 }
 
 .products-navigation {
@@ -42,10 +49,20 @@
 }
 
 .products-navigation .products-tabs {
+  display: flex;
+  flex-direction: row;
   border-color: aqua;
   border: solid 1px;
   margin-bottom: 10px;
+}
+
+.products-navigation .products-tabs .product-tab-selector {
+  cursor: pointer;
   text-align: center;
+  height: 90%;
+  width: 100%;
+  border-radius: 20px;
+  border: solid 1px;
 }
 
 .products-table {
@@ -56,6 +73,7 @@
   border: solid 1px;
   padding: 5px;
   overflow: auto; /* Makes the div scrollable */
+  max-height: 70%;
 }
 
 .products-card {
@@ -71,13 +89,105 @@
 }
 
 .products-card img {
+  cursor: pointer;
   width: 100px;
   height: 100px;
   border-radius: 25px;
 }
 
-.products-card button {
+.products-card .product-addToCart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 20px;
+  border: solid 0.5px;
   cursor: pointer;
   width: 100%;
   height: 120%;
+  background: var(--primary-bg-header-color-dark);
+  transition: all 0.5s;
+  border-color: var(--primary-bg-header-color-dark);
+}
+
+.products-card .product-addToCart:hover {
+  background-color: var(--primary-bg-strong-color-dark);
+  transition: all 0.2s;
+}
+
+.product-addToCart-manualQty {
+  width: 50px;
+  background: none;
+  color: white;
+  border: none;
+}
+
+.product-addToCart-qty {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.invoice-detail-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  gap: 10px;
+}
+
+.invoice-detail-container .invoice-detail-img {
+  margin: 0 10px 0 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+}
+
+/* configuraciones del modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure the modal overlay appears above all other elements */
+}
+
+.modal {
+  background: #475569;
+  padding: 20px;
+  border-radius: 25px;
+  position: relative;
+  width: 50%;
+  min-height: 45%;
+  z-index: 10000; /* Ensure the modal appears above all other elements */
+}
+
+.modal-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal-footer-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.close {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25px;
+  width: 30px;
+  background: #24857d;
 }
